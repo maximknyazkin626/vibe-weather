@@ -19,6 +19,8 @@ function App() {
   const [city, setCity] = useState("Нижний Новгород");
   const [weatherData, setWeatherData] = useState(null);
   const [weatherCondition,setWeatherCondition] = useState(null);
+  const [time, setTime] = useState(null);
+  const [background, setBackground] = useState(snow);
   
   useEffect(()=> {
     async function getData() {
@@ -39,19 +41,27 @@ function App() {
     }
   }
     getData();
-  }, []);
+  }, [city]);
 
-  // let dateTime = weatherData?.location?.localtime;
-  // console.log(dateTime);
-  // let time = dateTime.split(" ");
-  // let curTime = time[time.length - 1];
-  // console.log(curTime);
+  function chooseBackground() {
+    if (weatherData?.current?.condition.text.includes('drizzle')) {
+      setBackground(rain);
+    } else {
+      setBackground(snow);
+    }
+  }
+
+  function handleCityChange(e) {
+    setCity(e.target.value);
+    chooseBackground();
+  }
+
 
   return (
     <div className="app">
       <div className="main-container">
         <video autoPlay muted loop className="video">
-          <source src={snow} type="video/mp4"/>
+          <source src={background} type="video/mp4"/>
         </video>
         <section className="header-info">
           <div className="date">
@@ -69,7 +79,12 @@ function App() {
           <div className="weather-state">
             <p className="weather-state__text">{weatherData?.current?.condition.text}</p>
           </div>
-          <span className="weather-city">{city}</span>
+          {/* <span className="weather-city">{city}</span> */}
+          <select name="cityList" id="list" className='cityList' onChange={handleCityChange} value={city}>
+            <option value="Nizhny Novgorod" className='cityListItem'>Nizhny Novgorod</option>
+            <option value="Orel" className='cityListItem'>Orel</option>
+            <option value="Moscow" className='cityListItem'>Moscow</option>
+          </select>
         </section>
       </div>
     </div>
