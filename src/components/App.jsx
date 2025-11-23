@@ -8,12 +8,17 @@ import snow from "../assets/snow.mp4";
 
 const KEY = '9ed25195e11d4859947102643242211';
 
-
+// function translateCondition(weatherCond) {
+//   if (weatherCond.current.condition.text === 'Partly cloudy') {
+//     return setWeatherCondition('Частично облачно');
+//   }
+// }
 
 function App() {
 
   const [city, setCity] = useState("Нижний Новгород");
   const [weatherData, setWeatherData] = useState(null);
+  const [weatherCondition,setWeatherCondition] = useState(null);
   
   useEffect(()=> {
     async function getData() {
@@ -48,6 +53,16 @@ function App() {
           </div>
           <span className="time">09:30</span>
           <h1>Vibe<br />weather</h1>
+        </section>
+        <section className="main-info">
+          <div className="weather-info">
+            <p className="weather-temp">{Math.round(weatherData?.current?.temp_c)}°</p>
+            <img src={`${weatherData?.current?.condition.icon}`} alt="weather icon" />
+          </div>
+          <div className="weather-state">
+            <p className="weather-state__text">{weatherData?.current?.condition.text}</p>
+          </div>
+          <span className="weather-city">Нижний Новгород</span>
         </section>
       </div>
     </div>
