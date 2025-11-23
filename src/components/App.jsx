@@ -23,7 +23,7 @@ function App() {
   useEffect(()=> {
     async function getData() {
     try { 
-        const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${KEY}&q=${city}`);
+        const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${KEY}&q=${city}`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}; ${response.statusText}`);
         }

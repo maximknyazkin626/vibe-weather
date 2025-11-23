@@ -13,10 +13,10 @@ body {
 
 .main-container {
   text-align: center;
-  max-width: 360px;
-  max-height: 640px;
+  /* max-width: 360px;
+  max-height: 640px; */
   width: 360px;
-  height: 100vh;
+  height: 640px;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -124,4 +124,11 @@ h1 {
 }
 .weather-city{
 
+}
+
+@media (min-width: 360px) and (max-width: 480px) {
+    .main-container {
+        width: 100vw;
+        height: 100vh;
+    }
 }
