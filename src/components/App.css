@@ -8,6 +8,8 @@ body {
   align-items: center;
   height: 100vh;
   background-attachment: fixed;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 

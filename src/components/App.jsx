@@ -32,6 +32,7 @@ function App() {
         console.log(data);
         setWeatherData(data);
 
+
     } catch (error) {
       console.log("Error fetching data:", error);
       setError(error.message);
@@ -39,6 +40,12 @@ function App() {
   }
     getData();
   }, []);
+
+  // let dateTime = weatherData?.location?.localtime;
+  // console.log(dateTime);
+  // let time = dateTime.split(" ");
+  // let curTime = time[time.length - 1];
+  // console.log(curTime);
 
   return (
     <div className="app">
@@ -48,10 +55,10 @@ function App() {
         </video>
         <section className="header-info">
           <div className="date">
-            <span className="date-current">26.10.25</span>
+            <span className="date-current">{weatherData?.location?.localtime.split(" ")[0].split("-").reverse().join().replace(/,/g, ".")}</span>
             <span className="date-week">Tuesday</span>
           </div>
-          <span className="time">09:30</span>
+          <span className="time">{weatherData?.location?.localtime.split(" ")[1]}</span>
           <h1>Vibe<br />weather</h1>
         </section>
         <section className="main-info">
@@ -62,7 +69,7 @@ function App() {
           <div className="weather-state">
             <p className="weather-state__text">{weatherData?.current?.condition.text}</p>
           </div>
-          <span className="weather-city">Нижний Новгород</span>
+          <span className="weather-city">{city}</span>
         </section>
       </div>
     </div>
